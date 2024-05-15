@@ -1,1 +1,3 @@
 .env
+web-server1/node_modules
+web-server2/node_modules
