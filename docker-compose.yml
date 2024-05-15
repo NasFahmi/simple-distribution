@@ -10,6 +10,9 @@ services:
     depends_on:
       - web-server1
       - web-server2
+    networks:
+      distribusi:
+        ipv4_address: 172.25.110.1
 
   web-server1:
     build:
@@ -20,6 +23,9 @@ services:
       - "3000:3000"
     volumes:
       - data_server:/app/data/
+    networks:
+      distribusi:
+        ipv4_address: 172.25.110.21
 
   
   web-server2:
@@ -31,6 +37,9 @@ services:
       - "4000:3000"
     volumes:
       - data_server:/app/data/
+    networks:
+      distribusi:
+        ipv4_address: 172.25.110.22
   
   dbRead:
     image: mariadb:11.3.2
@@ -43,6 +52,9 @@ services:
       - "3306:3306"
     volumes:
       - db_read:/var/lib/mysql
+    networks:
+      distribusi:
+        ipv4_address: 172.25.110.31
   
   dbWrite:
     image: mariadb:11.3.2
@@ -55,7 +67,18 @@ services:
       - "3307:3306"
     volumes:
       - db_write:/var/lib/mysql
+    networks:
+      distribusi:
+        ipv4_address: 172.25.110.32
+
 volumes:
   db_read:
   db_write:
   data_server:
+
+networks:
+  distribusi:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.25.96.0/20
