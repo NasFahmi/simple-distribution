@@ -1,0 +1,61 @@
+version: "3.8"
+services:
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    container_name: distribusi-nginx
+    ports:
+      - "9000:80"
+    depends_on:
+      - web-server1
+      - web-server2
+
+  web-server1:
+    build:
+      context: ./web-server1
+      dockerfile: Dockerfile
+    container_name: distribusi-web-server1
+    ports:
+      - "3000:3000"
+    volumes:
+      - data_server:/app/data/
+
+  
+  web-server2:
+    build:
+      context: ./web-server2
+      dockerfile: Dockerfile
+    container_name: distribusi-web-server2
+    ports:
+      - "4000:3000"
+    volumes:
+      - data_server:/app/data/
+  
+  dbRead:
+    image: mariadb:11.3.2
+    container_name: distribusi-db-read
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: '1234'
+      MARIADB_DATABASE: distribusi
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_read:/var/lib/mysql
+  
+  dbWrite:
+    image: mariadb:11.3.2
+    container_name: distribusi-db-write
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: '1234'
+      MARIADB_DATABASE: distribusi
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_write:/var/lib/mysql
+volumes:
+  db_read:
+  db_write:
+  data_server:
