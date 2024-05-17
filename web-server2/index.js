@@ -1,8 +1,15 @@
 // Import module Express.js
 const express = require('express');
-
+const cors = require('cors'); // Import cors module
+const postRouter = require('./src/routes/post.route')
 // Buat instance aplikasi Express
 const app = express();
+
+app.use(cors()); // Use cors middleware
+app.use(express.json()); // Use express.json() middleware
+
+// Gunakan router post setelah middleware telah didefinisikan
+app.use('/posts', postRouter);
 
 // Definisikan rute utama
 app.get('/', (req, res) => {

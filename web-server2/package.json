@@ -9,7 +9,8 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "slugify": "^1.6.6"
   },
   "devDependencies": {
     "cors": "^2.8.5",
