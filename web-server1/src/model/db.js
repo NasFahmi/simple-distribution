@@ -2,8 +2,8 @@ const mysql = require('mysql');
 
 // Konfigurasi untuk koneksi ke database pertama
 const db_read = {
-    host: '172.25.110.31',
-    user: 'root',
+    host: '172.25.100.31',
+    user: 'user',
     password: '1234',
     database: 'distribusi',
     port: 3306
@@ -11,8 +11,8 @@ const db_read = {
 
 // Konfigurasi untuk koneksi ke database kedua
 const db_write = {
-    host: '172.25.110.32',
-    user: 'root',
+    host: '172.25.100.32',
+    user: 'user',
     password: '1234',
     database: 'distribusi',
     port: 3306
