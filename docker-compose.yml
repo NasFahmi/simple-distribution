@@ -5,7 +5,7 @@ services:
     container_name: distribusi-db-read
     restart: always
     environment:
-      MARIADB_ROOT_PASSWORD: '1234'
+      MARIADB_ROOT_PASSWORD: "1234"
       MARIADB_DATABASE: distribusi
     ports:
       - "3306:3306"
@@ -13,14 +13,14 @@ services:
       - db_read:/var/lib/mysql
     networks:
       distribusi:
-        ipv4_address: 172.25.110.31
-    
+        ipv4_address: 172.25.112.31
+
   dbWrite:
     image: mariadb:11.3.2
     container_name: distribusi-db-write
     restart: always
     environment:
-      MARIADB_ROOT_PASSWORD: '1234'
+      MARIADB_ROOT_PASSWORD: "1234"
       MARIADB_DATABASE: distribusi
     ports:
       - "3307:3306"
@@ -28,7 +28,7 @@ services:
       - db_write:/var/lib/mysql
     networks:
       distribusi:
-        ipv4_address: 172.25.110.32
+        ipv4_address: 172.25.112.32
   web-server1:
     build:
       context: ./web-server1
@@ -40,14 +40,13 @@ services:
       - data_server:/app/data/
     networks:
       distribusi:
-        ipv4_address: 172.25.110.21
+        ipv4_address: 172.25.112.21
     depends_on:
       dbRead:
         condition: service_started
       dbWrite:
         condition: service_started
 
-  
   web-server2:
     build:
       context: ./web-server2
@@ -59,7 +58,7 @@ services:
       - data_server:/app/data/
     networks:
       distribusi:
-        ipv4_address: 172.25.110.22
+        ipv4_address: 172.25.112.22
     depends_on:
       dbRead:
         condition: service_started
@@ -78,16 +77,15 @@ services:
       - web-server2
     networks:
       distribusi:
-        ipv4_address: 172.25.110.1
+        ipv4_address: 172.25.112.1
 
 volumes:
   db_read:
   db_write:
   data_server:
-
 networks:
   distribusi:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.25.96.0/20
+        - subnet: 172.25.112.0/20
