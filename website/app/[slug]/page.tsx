@@ -1,5 +1,6 @@
 "use client";
 
+import { containerserver } from "@/utlis/api";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -26,7 +27,7 @@ export default function Detail({
   const fetchPosts = async () => {
     try {
       const response = await fetch(
-        `http://172.25.100.1:80/posts/${params.slug}`
+        `${containerserver}/posts/${params.slug}`
       );
       const data = (await response.json()) as DataPost;
       console.log(data);
