@@ -1,5 +1,5 @@
 "use client";
-import { containerserver } from "@/utlis/api";
+import { containerserver, localserver } from "@/utlis/api";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 interface Post {
@@ -29,7 +29,7 @@ export default function Home() {
   const [showEditModal, setShowEditModal] = useState(false);
   const fetchPosts = async () => {
     try {
-      const response = await fetch(`${containerserver}/posts`);
+      const response = await fetch(`${localserver}/posts`);
       const data = (await response.json()) as DataPost;
       console.log(data);
       setlocation(data.location);

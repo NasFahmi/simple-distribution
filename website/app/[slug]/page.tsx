@@ -1,6 +1,6 @@
 "use client";
 
-import { containerserver } from "@/utlis/api";
+import { containerserver, localserver } from "@/utlis/api";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -27,7 +27,7 @@ export default function Detail({
   const fetchPosts = async () => {
     try {
       const response = await fetch(
-        `${containerserver}/posts/${params.slug}`
+        `${localserver}/posts/${params.slug}`
       );
       const data = (await response.json()) as DataPost;
       console.log(data);
