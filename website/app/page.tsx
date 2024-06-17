@@ -28,7 +28,7 @@ export default function Home() {
   const [showEditModal, setShowEditModal] = useState(false);
   const fetchPosts = async () => {
     try {
-      const response = await fetch("http://localhost:9000/posts");
+      const response = await fetch("http://172.25.100.1:80/posts");
       const data = (await response.json()) as DataPost;
       console.log(data);
       setlocation(data.location);
@@ -55,7 +55,7 @@ export default function Home() {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:9000/posts/${editForm.id}`,
+        `http://172.25.100.1:80/posts/${editForm.id}`,
         {
           method: "PUT",
           headers: {
@@ -79,7 +79,7 @@ export default function Home() {
   const handleDelete = async (id: number) => {
     // console.log("delete");
     try {
-      const response = await fetch(`http://localhost:9000/posts/${id}`, {
+      const response = await fetch(`http://172.25.100.1:80/posts/${id}`, {
         method: "DELETE",
       });
       if (!response.ok) {
@@ -98,7 +98,7 @@ export default function Home() {
     e.preventDefault();
     console.log("Form data:", createForm);
     try {
-      const response = await fetch("http://localhost:9000/posts", {
+      const response = await fetch("http://172.25.100.1:80/posts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

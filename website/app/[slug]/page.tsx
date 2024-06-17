@@ -26,7 +26,7 @@ export default function Detail({
   const fetchPosts = async () => {
     try {
       const response = await fetch(
-        `http://localhost:9000/posts/${params.slug}`
+        `http://172.25.100.1:80/posts/${params.slug}`
       );
       const data = (await response.json()) as DataPost;
       console.log(data);
