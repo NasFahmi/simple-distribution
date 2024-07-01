@@ -56,7 +56,7 @@ export default function Home() {
     e.preventDefault();
     try {
       const response = await fetch(
-        `${containerserver}/posts/${editForm.id}`,
+        `${localserver}/posts/${editForm.id}`,
         {
           method: "PUT",
           headers: {
@@ -80,7 +80,7 @@ export default function Home() {
   const handleDelete = async (id: number) => {
     // console.log("delete");
     try {
-      const response = await fetch(`${containerserver}/posts/${id}`, {
+      const response = await fetch(`${localserver}/posts/${id}`, {
         method: "DELETE",
       });
       if (!response.ok) {
@@ -99,7 +99,7 @@ export default function Home() {
     e.preventDefault();
     console.log("Form data:", createForm);
     try {
-      const response = await fetch(`${containerserver}/posts`, {
+      const response = await fetch(`${localserver}/posts`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -108,6 +108,7 @@ export default function Home() {
       });
 
       if (!response.ok) {
+        console.log('error')
         throw new Error("Failed to create post");
       }
 
