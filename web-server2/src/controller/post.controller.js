@@ -14,6 +14,7 @@ const getAllPost = (req, res) => {
         // Mengirim hasil kueri sebagai respons
         res.json({
             location:'Server node 2',
+            ip: req.connection.localAddress,
             posts: results
         });
     });
@@ -34,6 +35,7 @@ const getPostBySlug = (req, res) => {
         // Mengirim hasil kueri sebagai respons
         res.json({
             location:'Server node 2',
+            ip: req.connection.localAddress,
             posts: results
         });
     });
@@ -57,6 +59,7 @@ const createPost = (req, res) => {
         res.json({  
             location:'Server node 2',
             posts: results,
+            ip: req.connection.localAddress,
             message: 'Post created successfully' 
         });
     });
@@ -81,6 +84,7 @@ const editPostById = (req, res) => {
         res.json({ 
             location:'Server node 2',
             posts: results,
+            ip: req.connection.localAddress,
             message: 'Post edited successfully' 
         });
     });
@@ -102,6 +106,7 @@ const deletePostById = (req, res) => {
         res.json({
             location:'Server node 2',
             posts: results, 
+            ip: req.connection.localAddress,
             message: 'Post deleted successfully' 
         });
     });

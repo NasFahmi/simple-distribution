@@ -11,11 +11,13 @@ interface Post {
 }
 interface DataPost {
   location: string;
+  ip : string;
   posts: Post[];
 }
 export default function Home() {
   const [posts, setPosts] = useState<DataPost>();
   const [location, setlocation] = useState("");
+  const [ip, setip] = useState('');
   const [showModal, setShowModal] = useState(false); // State to control modal visibility
   const [createForm, setCreateForm] = useState({
     title: "",
@@ -33,6 +35,7 @@ export default function Home() {
       const data = (await response.json()) as DataPost;
       console.log(data);
       setlocation(data.location);
+      setip(data.ip);
       setPosts(data);
     } catch (error) {
       console.error("Error fetching posts:", error);
@@ -136,6 +139,7 @@ export default function Home() {
         <div className="">
           <h1>Halaman Home</h1>
           <h1 className="mb-2">Server Location : {location}</h1>
+          <h1 className="mb-2">Server ip : {ip}</h1>
         </div>
 
         <button

@@ -20,10 +20,12 @@ export default function Detail({
   }
   interface DataPost {
     location: string;
+    ip : string;
     posts: Post[];
   }
   const [posts, setPosts] = useState<DataPost>();
   const [location, setlocation] = useState("");
+  const [ip, setip] = useState("");
   const fetchPosts = async () => {
     try {
       const response = await fetch(
@@ -32,6 +34,7 @@ export default function Detail({
       const data = (await response.json()) as DataPost;
       console.log(data);
       setlocation(data.location);
+      setip(data.ip);
       setPosts(data);
     } catch (error) {
       console.error("Error fetching posts:", error);
@@ -50,6 +53,7 @@ export default function Detail({
         </Link>
         <h1>Halaman Detail {posts?.posts[0].title}</h1>
         <h1 className="mb-2">Server Location : {location}</h1>
+        <h1 className="mb-2">Server ip : {ip}</h1>
         {posts?.posts.map((post) => (
           <div
             key={post.id}

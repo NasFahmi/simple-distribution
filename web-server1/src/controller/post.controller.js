@@ -1,5 +1,7 @@
 const slugify = require('slugify');
 const dbConnection = require('../model/db')
+const os = require('os');
+
 const getAllPost = (req, res) => {
     // Membuat kueri untuk mengambil semua posting dari database read
     const query = 'SELECT * FROM posts';
@@ -14,6 +16,7 @@ const getAllPost = (req, res) => {
         // Mengirim hasil kueri sebagai respons
         res.json({
             location:'Server node 1',
+            ip: req.connection.localAddress,
             posts: results
         });
     });
@@ -34,6 +37,7 @@ const getPostBySlug = (req, res) => {
         // Mengirim hasil kueri sebagai respons
         res.json({
             location:'Server node 1',
+            ip: req.connection.localAddress,
             posts: results
         });
     });
@@ -57,6 +61,7 @@ const createPost = (req, res) => {
         res.json({  
             location:'Server node 1',
             posts: results,
+            ip: req.connection.localAddress,
             message: 'Post created successfully' 
         });
     });
@@ -81,6 +86,7 @@ const editPostById = (req, res) => {
         res.json({ 
             location:'Server node 1',
             posts: results,
+            ip: req.connection.localAddress,
             message: 'Post edited successfully' 
         });
     });
@@ -102,6 +108,7 @@ const deletePostById = (req, res) => {
         res.json({
             location:'Server node 1',
             posts: results, 
+            ip: req.connection.localAddress,
             message: 'Post deleted successfully' 
         });
     });

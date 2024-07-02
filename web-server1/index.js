@@ -4,6 +4,7 @@ const cors = require('cors'); // Import cors module
 const postRouter = require('./src/routes/post.route')
 // Buat instance aplikasi Express
 const app = express();
+const os = require('os');
 
 app.use(cors()); // Use cors middleware
 app.use(express.json()); // Use express.json() middleware
@@ -13,7 +14,7 @@ app.use('/posts', postRouter);
 
 // Definisikan rute utama
 app.get('/', (req, res) => {
-    res.send('Hello, world! from node 1');
+    res.send(`Hello, world! from node 1 ${req.connection.localAddress}`);
 });
 
 // Tentukan port yang akan digunakan untuk server
